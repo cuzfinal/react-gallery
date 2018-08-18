@@ -56,7 +56,7 @@ const common: webpack.Configuration = {
         removeComments: true,
         collapseWhitespace: true
       }
-    })
+    }),
   ],
   optimization: {
     splitChunks: {
@@ -67,11 +67,21 @@ const common: webpack.Configuration = {
       maxInitialRequests: 3,
       name: true,
       cacheGroups: {
-        commons: {
+        vender: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
-          chunks: 'all'
-        }
+          chunks: 'all',
+        },
+        common: {
+          name: 'commons',
+          chunks: 'initial',
+          minChunks: 2,
+        },
+        default: {
+          minChunks: 2,
+          priority: -20,
+          reuseExistingChunk: true,
+        },
       }
     }
   }

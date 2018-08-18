@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-
-export default class About extends Component{
+import { Helmet } from 'react-helmet'
+export default class Detail extends Component{
   render() {
-    return <div style={{color: 'brown'}}>
-        <h1>About Component</h1>
-      </div>
+    return <>
+      <Helmet>
+        <title>about</title>
+      </Helmet>
+      <h1>About</h1>
+    </>
   }
 }

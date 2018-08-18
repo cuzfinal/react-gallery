@@ -10,3 +10,5 @@ ReactDOM.render(
   </BrowserRouter>,
   document.querySelector('#app')
 )
+
+console.log('Loaded at:', new Date().toLocaleString())

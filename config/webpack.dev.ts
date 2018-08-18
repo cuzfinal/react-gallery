@@ -10,7 +10,10 @@ const dev: webpack.Configuration = merge(common, {
     historyApiFallback: true,
     port: 8800,
     overlay: true
-  }
+  },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 })
 
 export default dev
