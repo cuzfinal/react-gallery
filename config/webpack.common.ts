@@ -26,6 +26,10 @@ const common: webpack.Configuration = {
       test: /\.tsx?$/,
       loader: 'awesome-typescript-loader',
       exclude: nodeModules,
+      options: {
+        "useBabel": true,
+        "babelCore": "@babel/core",
+      },
     }, {
       test: /\.less$/,
       use: [{
