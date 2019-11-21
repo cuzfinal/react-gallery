@@ -64,28 +64,13 @@ const common: webpack.Configuration = {
   ],
   optimization: {
     splitChunks: {
-      chunks: 'async',
-      minSize: 30000,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      name: true,
+      chunks: 'all',
       cacheGroups: {
-        vender: {
+        commons: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendors',
-          chunks: 'all',
-        },
-        common: {
-          name: 'commons',
-          chunks: 'initial',
-          minChunks: 2,
-        },
-        default: {
-          minChunks: 2,
-          priority: -20,
-          reuseExistingChunk: true,
-        },
+          chunks: 'all'
+        }
       }
     }
   }
