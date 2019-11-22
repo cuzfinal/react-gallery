@@ -3,7 +3,8 @@ import webpack from 'webpack'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 import CopyWebPlugin from 'copy-webpack-plugin'
-import { publicPath, src, nodeModules } from './env'
+import { publicPath, src } from './env'
+
 
 const common: webpack.Configuration = {
   entry: {
@@ -11,8 +12,8 @@ const common: webpack.Configuration = {
   },
   output: {
     path: path.resolve(__dirname, '../dist/'),
-    filename: '[name].[hash:4].js',
-    chunkFilename: 'chunks/[name].[hash:4].js',
+    filename: 'js/[name].[hash:5].js',
+    chunkFilename: 'js/[name].[hash:5].js',
     publicPath: '/',
   },
   resolve: {
@@ -24,12 +25,10 @@ const common: webpack.Configuration = {
   module: {
     rules: [{
       test: /\.tsx?$/,
-      loader: 'awesome-typescript-loader',
-      exclude: nodeModules,
-      options: {
-        "useBabel": true,
-        "babelCore": "@babel/core",
-      },
+      use: [
+        'babel-loader',
+        'ts-loader'
+      ]
     }, {
       test: /\.less$/,
       use: [{
@@ -44,15 +43,15 @@ const common: webpack.Configuration = {
       loader: 'url-loader',
       options: {
         limit: 8192,
-        name: 'assets/[name].[hash:4].[ext]'
+        name: 'assets/[name].[hash:5].[ext]'
       }
     }]
   },
   plugins: [
     new CopyWebPlugin([{from: publicPath}]),
     new MiniCssExtractPlugin({
-      filename: "[name].[hash:4].css",
-      chunkFilename: "[id].[hash:4].css"
+      filename: "css/[name].[hash:5].css",
+      chunkFilename: "css/[name].[hash:5].css"
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, '../public/index.html'),
